@@ -22,9 +22,9 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String test = "Hello     world";
+        String test = "tWo    wordS";
         char char2 = 'l';
-        System.out.println(capVowelsLowRest(test)); 
+        System.out.println(camelCase(test)); 
         
     }
 
@@ -32,22 +32,30 @@ public class StringOps {
         String capVowelRest = "";
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
-            if (ch != 'A' && ch != 'E' && ch != 'I' && ch != 'O' && ch != 'U')  {
-                if ( ch > 'A' && ch <= 'Z') {
-                    capVowelRest += (char) (string.charAt(i) + 32);
-                     ch = string.charAt(i+1);
-                     i++;
+             if (isVowel(ch)) { 
+                if (ch >= 'a' && ch <= 'z') {
+                    capVowelRest += (char) (ch - 'a' + 'A');
+                } 
+                else {
+                 capVowelRest += ch;
                 }
-                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'e' || ch == 'u') {
-                    capVowelRest += (char) (ch - 32);
-                    ch = string.charAt(i + 1);
-                    i++;
-                }      
+             } else { 
+                if (ch >= 'A' && ch <= 'Z') {
+                    capVowelRest += (char) (ch + 'a' - 'A');
+                } else {
+                    capVowelRest += ch;
+                }
             }
-             capVowelRest += (char) (ch);    
         }
         return capVowelRest;     
     }
+    
+    // Helper method to check if a character is a vowel
+    private static boolean isVowel(char ch) {
+        return ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' ||
+               ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }   
+    
 
 
     public static String camelCase (String string) {
