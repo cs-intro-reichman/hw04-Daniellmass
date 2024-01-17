@@ -24,7 +24,7 @@ public class StringOps {
     public static void main(String[] args) {
         String test = "Hello     world";
         char char2 = 'l';
-        System.out.println(camelCase(test)); 
+        System.out.println(capVowelsLowRest(test)); 
         
     }
 
@@ -34,10 +34,14 @@ public class StringOps {
             char ch = string.charAt(i);
             if (ch != 'A' && ch != 'E' && ch != 'I' && ch != 'O' && ch != 'U')  {
                 if ( ch > 'A' && ch <= 'Z') {
-                    capVowelRest += (char) (string.charAt(i) + 32); 
+                    capVowelRest += (char) (string.charAt(i) + 32);
+                     ch = string.charAt(i+1);
+                     i++;
                 }
                 if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'e' || ch == 'u') {
                     capVowelRest += (char) (ch - 32);
+                    ch = string.charAt(i + 1);
+                    i++;
                 }      
             }
              capVowelRest += (char) (ch);    
@@ -45,32 +49,29 @@ public class StringOps {
         return capVowelRest;     
     }
 
+
     public static String camelCase (String string) {
         String ans = "";
         int temp = 0;
         for( int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
-            if((char) ch < 91 && (char) ch != 32) {
+            if((char) ch < 91 && ch != ' ') {
                 ans += (char) (ch + 32);
             }
-            
             else if (ch == 32 && string.charAt(i + 1) > 90){
                 ch = string.charAt(i+1);
                 ans += (char) (ch - 32);
                 i++;
             }
-            else if (ch == 32 && string.charAt(i + 1) <= 90) {
+            else if (ch == ' ' && (char) string.charAt(i + 1) <= 90 && string.charAt(i+1) != ' ') {
                 temp = string.charAt(i + 1);
                 ans += (char) temp;
                 i++;
             } 
-            else if ((char) ch != 32 ) {
+            else if (ch != ' ') {
                 ans += ch;
             }
-            else if (ch == ' ') {
-            } 
-        
-    }
+        }
         return ans;
     }
 

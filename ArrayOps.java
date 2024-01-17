@@ -1,8 +1,8 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int [] array = {1, 2, 1, 1, 2};
-        int [] array3 = {1, 3, 2};
-        System.out.println(isSorted(array3));
+        int [] array = {1,3,-4,5}; 
+        int [] array3 = {1,2,3,-4,5};
+        System.out.println(containsTheSameElements(array, array3));
        
         
         
@@ -38,15 +38,24 @@ public class ArrayOps {
             
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
-       int counter = 0;
-       for(int i = 0; i < array1.length; i++) {
-        for(int j = 0; j < array2.length; j++) {
-            if (array1[i] == array2[j]) {
-                counter++;
-            }
+       int countOfTwo = 0;
+       int countArr1 = 0;
+       int countArr2 = 0;
+       for(int i = 0; i < array1.length - 1; i++) {
+        if(array1 [i] != array1[i + 1]) {
+            countArr1++;
         }
+        for(int j = 0; j < array2.length - 1; j++) {
+            if(array2 [j] != array2 [j + 1]) {
+                countArr2++;
+            }
+            if (array1[i] == array2[j]) {
+                countOfTwo++;
+            }
+
+        }   
        }
-       if (counter == array2.length || counter == array1.length) {
+       if ((countOfTwo == countArr1 && countOfTwo == countArr2) ) {
         return true;
        } 
        else {
