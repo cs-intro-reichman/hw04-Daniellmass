@@ -38,29 +38,33 @@ public class ArrayOps {
             
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
-       int countOfTwo = 0;
-       int countArr1 = 0;
-       int countArr2 = 0;
-       for(int i = 0; i < array1.length - 1; i++) {
-        if(array1 [i] != array1[i + 1]) {
-            countArr1++;
+       for(int i = 0; i < array1.length ; i++) {
+         int num1 = array1[i];
+         boolean flag = false;
+        for(int j = 0; j < array2.length; j++) {
+            if (array2[j] == num1) {
+                flag = true;
+                break;
+            }
         }
-        for(int j = 0; j < array2.length - 1; j++) {
-            if(array2 [j] != array2 [j + 1]) {
-                countArr2++;
-            }
-            if (array1[i] == array2[j] || array1[i+1] == array2 [j+1]) {
-                countOfTwo++;
-            }
-
-        }   
+        if (flag == false) {
+            return false;
+        }
        }
-       if ((countOfTwo == countArr1 && countOfTwo == array1.length) ) {
-        return true;
-       } 
-       else {
-        return false;
+       for(int i = 0; i < array2.length ; i++) {
+        int num2 = array2[i];
+        boolean flag = false;
+       for(int j = 0; j < array1.length; j++) {
+           if (array1[j] == num2) {
+               flag = true;
+               break;
+           }
        }
+       if (flag == false) {
+           return false;
+       }
+      }
+       return true;    
     }
      
 
