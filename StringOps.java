@@ -22,7 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String test = "tWo    wordS";
+        String test = " tWo    wordS";
         char char2 = 'l';
         System.out.println(camelCase(test)); 
         
@@ -60,20 +60,19 @@ public class StringOps {
 
     public static String camelCase (String string) {
         String ans = "";
-        int temp = 0;
         for( int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
-            if((char) ch < 91 && ch != ' ') {
+            if( ch <= 'Z' && ch != ' ') {
                 ans += (char) (ch + 32);
             }
-            else if (ch == 32 && string.charAt(i + 1) > 90){
+            else if (ch == ' ' && string.charAt(i + 1) > 90 && ans.length() != 0) {
                 ch = string.charAt(i+1);
                 ans += (char) (ch - 32);
                 i++;
             }
-            else if (ch == ' ' && (char) string.charAt(i + 1) <= 90 && string.charAt(i+1) != ' ') {
-                temp = string.charAt(i + 1);
-                ans += (char) temp;
+            else if (ch == ' ' && (char) string.charAt(i + 1) <= 'Z' && string.charAt(i+1) != ' ') {
+                ch = string.charAt(i + 1);
+                ans += (char) ch;
                 i++;
             } 
             else if (ch != ' ') {

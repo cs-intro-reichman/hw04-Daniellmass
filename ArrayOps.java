@@ -49,13 +49,13 @@ public class ArrayOps {
             if(array2 [j] != array2 [j + 1]) {
                 countArr2++;
             }
-            if (array1[i] == array2[j]) {
+            if (array1[i] == array2[j] || array1[i+1] == array2 [j+1]) {
                 countOfTwo++;
             }
 
         }   
        }
-       if ((countOfTwo == countArr1 && countOfTwo == countArr2) ) {
+       if ((countOfTwo == countArr1 && countOfTwo == array1.length) ) {
         return true;
        } 
        else {
