@@ -22,32 +22,34 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String test = " tWo    wordS";
+        String test = "One two tHRee world";
         char char2 = 'l';
-        System.out.println(camelCase(test)); 
+        System.out.println(capVowelsLowRest(test)); 
         
     }
 
     public static String capVowelsLowRest (String string) {
-        String capVowelRest = "";
+        String capVolR = "";
         for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
              if (isVowel(ch)) { 
                 if (ch >= 'a' && ch <= 'z') {
-                    capVowelRest += (char) (ch - 'a' + 'A');
+                    capVolR += (char) (ch - 'a' + 'A');
                 } 
                 else {
-                 capVowelRest += ch;
+                    capVolR += ch;
                 }
-             } else { 
+             } 
+             else { 
                 if (ch >= 'A' && ch <= 'Z') {
-                    capVowelRest += (char) (ch + 'a' - 'A');
-                } else {
-                    capVowelRest += ch;
+                    capVolR += (char) (ch + 'a' - 'A');
+                } 
+                else {
+                    capVolR += ch;
                 }
             }
         }
-        return capVowelRest;     
+        return capVolR;     
     }
     
     // Helper method to check if a character is a vowel
@@ -60,24 +62,28 @@ public class StringOps {
 
     public static String camelCase (String string) {
         String ans = "";
-        for( int i = 0; i < string.length(); i++) {
+        for (int i = 0; i < string.length(); i++) {
             char ch = string.charAt(i);
-            if( ch <= 'Z' && ch != ' ') {
-                ans += (char) (ch + 32);
+            if (ch != ' ') {
+                if (ch <= 'Z') {
+                 ans += (char) (ch + 32);
+                }
+                else {
+                 ans += ch;
+                }
             }
-            else if (ch == ' ' && string.charAt(i + 1) > 90 && ans.length() != 0) {
-                ch = string.charAt(i+1);
-                ans += (char) (ch - 32);
-                i++;
-            }
-            else if (ch == ' ' && (char) string.charAt(i + 1) <= 'Z' && string.charAt(i+1) != ' ') {
-                ch = string.charAt(i + 1);
-                ans += (char) ch;
-                i++;
-            } 
-            else if (ch != ' ') {
-                ans += ch;
-            }
+            else {
+                if (string.charAt(i + 1) > 'Z' && ans.length() != 0) {
+                    ch = string.charAt(i+1);
+                    ans += (char) (ch - 32);
+                    i++;
+                }
+                else if (string.charAt(i + 1) <= 'Z' && string.charAt(i+1) != ' ') {
+                    ch = string.charAt(i + 1);
+                    ans += (char) ch;
+                    i++;
+                }
+            }      
         }
         return ans;
     }
@@ -91,12 +97,12 @@ public class StringOps {
         }
         int [] newArr = new int [counter];
         int index = 0;
-        for(int j = 0; j < string.length(); j++) {
+        for (int j = 0; j < string.length(); j++) {
             if (string.charAt(j) == chr) {
             newArr[index] = j;
             index++;
             }
         }
         return newArr;
-        }      
+    }      
 }
